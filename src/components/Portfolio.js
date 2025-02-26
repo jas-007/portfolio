@@ -116,9 +116,12 @@ export default function Portfolio() {
                             className="hero-video"
                         >
                             <source src="/assets/videos/earth.mp4" type="video/mp4" />
-                            Your browser does not support the video tag.
                         </video>
                     </div>
+                    <a href="#about" className="explore-link">
+                        Explore
+                        <i className="fas fa-chevron-down"></i>
+                    </a>
                 </div>
             </section>
 
