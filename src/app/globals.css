@@ -252,7 +252,6 @@ body {
     gap: 0.5rem;
     font-size: 1.2rem;
     cursor: pointer;
-    transition: all 0.3s ease;
     z-index: 2;
 }
 
@@ -274,7 +273,7 @@ body {
 }
 
 .explore-link:hover {
-    color: var(--accent-color);
+    color: var(--text-color);
 }
 
 /* Buttons */
@@ -508,4 +507,247 @@ body {
 .revealed {
     opacity: 1;
     transform: translateY(0);
+}
+
+html {
+    scroll-behavior: auto; /* Reset to default */
+}
+
+/* Optional: Add scroll-timeline for smoother animation */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-timeline: 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+.about-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.title-line {
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--text-color);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease forwards;
+}
+
+.title-line:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.title-line.grey {
+    color: #808080; /* Grey color for */
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.expertise-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--background);
+    position: relative;
+    margin-top: -8vh;
+}
+
+.video-container {
+    width: 65vh;
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+.expertise-video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.expertise-content {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 0 2rem;
+    margin-top: 2rem; /* Space after video */
+    opacity: 0;
+    animation: fadeIn 1s ease forwards 0.5s;
+}
+
+.expertise-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.expertise-title .dot {
+    color: var(--text-color);
+}
+
+.expertise-description {
+    font-size: 1.4rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    color: #a0a0a0;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.portfolio-link-container {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.portfolio-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--text-color);
+    text-decoration: none;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.portfolio-link i {
+    font-size: 0.9rem;
+}
+
+.portfolio-link span {
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.portfolio-link:hover {
+    color: var(--text-color);
+    transform: translateY(-2px);
+}
+
+.expertise-content-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background);
+}
+
+.expertise-content {
+    width: 100%;
+    max-width: 800px;
+    text-align: center;
+    padding: 0 2rem;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+/* Keep existing expertise-title, expertise-description, and portfolio-link styles */
+
+.expertise-areas {
+    background-color: var(--background);
+}
+
+.expertise-area {
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+}
+
+.expertise-area-content {
+    flex: 1;
+    background-color: #0a0a0a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+}
+
+.content-wrapper {
+    max-width: 800px;
+}
+
+.area-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.area-headline {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.area-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: #a0a0a0;
+}
+
+.key-services h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.key-services ul {
+    list-style: none;
+    padding: 0;
+    border-left: 3px solid var(--text-color);
+    padding-left: 2rem;
+}
+
+.key-services li {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+    margin-bottom: 1rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.key-services li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--text-color);
+    font-size: 1.1rem;
+}
+
+.expertise-area-image {
+    flex: 1;
+    background-color: var(--background);
 }
