@@ -216,7 +216,7 @@ export default function Portfolio() {
                         </div>
                     </div>
                     <div className="expertise-area-image">
-                        {/* Image will go here */}
+                        <img src="/assets/images/ui.jpg" alt="UI/UX Design & Branding" />
                     </div>
                 </div>
 
@@ -242,7 +242,7 @@ export default function Portfolio() {
                         </div>
                     </div>
                     <div className="expertise-area-image">
-                        {/* Image will go here */}
+                        <img src="/assets/images/creative.jpg" alt="Creative & Interactive" />
                     </div>
                 </div>
 
@@ -269,7 +269,7 @@ export default function Portfolio() {
                         </div>
                     </div>
                     <div className="expertise-area-image">
-                        {/* Image will go here */}
+                        <img src="/assets/images/webdev.jpg" alt="Web Development & E-Commerce" />
                     </div>
                 </div>
 
@@ -295,7 +295,7 @@ export default function Portfolio() {
                         </div>
                     </div>
                     <div className="expertise-area-image">
-                        {/* Image will go here */}
+                        <img src="/assets/images/digital.jpg" alt="Digital Strategy & Integration" />
                     </div>
                 </div>
             </section>
