@@ -3,9 +3,9 @@ import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import ThemeToggle from './ThemeToggle';
+import Link from 'next/link';
 
 // Dynamically import LavaRing with no SSR
-const LavaRing = dynamic(() => import('./LavaRing'), { ssr: false });
 
 export default function Portfolio() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -109,7 +109,7 @@ export default function Portfolio() {
                                 </div>
                                 <a href="#about">About</a>
                                 <a href="#expertise">Expertise</a>
-                                <a href="#projects">Projects</a>
+                                <Link href="/projects">Projects</Link>
                                 <a href="#contact">Contact</a>
                                 <div className="social-links">
                                     <div className="social-icon">
