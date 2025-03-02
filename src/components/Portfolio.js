@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import ThemeToggle from './ThemeToggle';
 
 // Dynamically import LavaRing with no SSR
 const LavaRing = dynamic(() => import('./LavaRing'), { ssr: false });
@@ -18,27 +19,7 @@ export default function Portfolio() {
                 const targetElement = document.querySelector(targetId);
                 
                 if (targetElement) {
-                    const startPosition = window.pageYOffset;
-                    const targetPosition = targetElement.offsetTop + 200;
-                    const distance = targetPosition - startPosition;
-                    const duration = 2000;
-                    let start = null;
-
-                    function animation(currentTime) {
-                        if (start === null) start = currentTime;
-                        const timeElapsed = currentTime - start;
-                        const progress = Math.min(timeElapsed / duration, 1);
-
-                        const easing = t => t * (2 - t);
-                        
-                        window.scrollTo(0, startPosition + (distance * easing(progress)));
-
-                        if (timeElapsed < duration) {
-                            requestAnimationFrame(animation);
-                        }
-                    }
-
-                    requestAnimationFrame(animation);
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
@@ -74,13 +55,40 @@ export default function Portfolio() {
         };
     }, []);
 
+    useEffect(() => {
+        const options = {
+            threshold: 0.5 // Trigger when section is 50% visible
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    // Remove in-view class from other sections
+                    document.querySelectorAll('.expertise-area').forEach(area => {
+                        if (area !== entry.target) {
+                            area.classList.remove('in-view');
+                        }
+                    });
+                }
+            });
+        }, options);
+
+        // Observe all expertise areas
+        document.querySelectorAll('.expertise-area').forEach(area => {
+            observer.observe(area);
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted');
     };
 
     return (
-        <>
+        <div className="portfolio-container">
             <nav className="navbar">
                 <div className="nav-content">
                     <div className="logo">Jasper.it</div>
@@ -126,299 +134,187 @@ export default function Portfolio() {
                 </div>
             </nav>
 
-            <section id="hero" className="hero">
-                <div className="hero-content">
-                    <div className="video-wrapper">
+            <ThemeToggle />
+
+            <main>
+                <section id="hero" className="hero">
+                    <div className="hero-content">
+                        <div className="video-wrapper">
+                            <video 
+                                autoPlay 
+                                loop 
+                                muted 
+                                playsInline
+                                className="hero-video"
+                            >
+                                <source src="/assets/videos/earth.mp4" type="video/mp4" />
+                            </video>
+                        </div>
+                        <a href="#about" className="explore-link">
+                            Explore
+                            <i className="fas fa-chevron-down"></i>
+                        </a>
+                    </div>
+                </section>
+
+                <section id="about" className="about-section">
+                    <div className="title-container">
+                        <div className="title-line grey">Software Developer</div>
+                        <div className="title-line ampersand">&</div>
+                        <div className="title-line">UI/UX Designer</div>
+                    </div>
+                </section>
+
+                <section id="expertise" className="expertise-section">
+                    <div className="video-container">
                         <video 
                             autoPlay 
                             loop 
                             muted 
                             playsInline
-                            className="hero-video"
+                            className="expertise-video"
                         >
-                            <source src="/assets/videos/earth.mp4" type="video/mp4" />
+                            <source src="/assets/videos/owl.mp4" type="video/mp4" />
                         </video>
                     </div>
-                    <a href="#about" className="explore-link">
-                        Explore
-                        <i className="fas fa-chevron-down"></i>
-                    </a>
-                </div>
-            </section>
+                </section>
 
-            <section id="about" className="about-section">
-                <div className="title-container">
-                    <div className="title-line grey">Software Developer</div>
-                    <div className="title-line ampersand">&</div>
-                    <div className="title-line">UI/UX Designer</div>
-                </div>
-            </section>
-
-            <section id="expertise" className="expertise-section">
-                <div className="video-container">
-                    <video 
-                        autoPlay 
-                        loop 
-                        muted 
-                        playsInline
-                        className="expertise-video"
-                    >
-                        <source src="/assets/videos/owl.mp4" type="video/mp4" />
-                    </video>
-                </div>
-            </section>
-
-            <section id="expertise-content" className="expertise-content-section">
-                <div className="expertise-content">
-                    <h2 className="expertise-title">
-                        <span>Innovative</span>
-                        <span className="dot">•</span>
-                        <span>Impactful</span>
-                        <span className="dot">•</span>
-                        <span>Engaging</span>
-                    </h2>
-                    <p className="expertise-description">
-                        I speak code and design, creating digital experiences that are both robust and visually captivating. 
-                        I specialize in building interactive web applications with clean, efficient code and designing 
-                        intuitive interfaces that put users first. Whether it's crafting responsive websites, developing 
-                        engaging apps, or reimagining user journeys, I blend technical precision with creative flair to 
-                        bring ideas to life.
-                    </p>
-                    <div className="portfolio-link-container">
-                        <a href="#portfolio" className="portfolio-link">
-                            <i className="fas fa-briefcase"></i>
-                            <span>Portfolio</span>
-                        </a>
+                <section id="expertise-content" className="expertise-content-section">
+                    <div className="expertise-content">
+                        <h2 className="expertise-title">
+                            <span>Innovative</span>
+                            <span className="dot">,</span>
+                            <span>Impactful</span>
+                            <span className="dot">&</span>
+                            <span>Engaging</span>
+                        </h2>
+                        <p className="expertise-description">
+                            I speak code and design, creating digital experiences that are both robust and visually captivating. 
+                            From responsive websites to intuitive interfaces, I combine technical precision with creative flair to bring ideas to life.
+                        </p>
+                        <div className="portfolio-link-container">
+                            <a href="#portfolio" className="portfolio-link">
+                                <span>Portfolio</span>
+                                <i className="fas fa-globe"></i>
+                            </a>
+                            <a href="#contact" className="portfolio-link">
+                                <span>Contact</span>
+                                <i className="fas fa-user"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="expertise-areas" className="expertise-areas">
-                {/* Area 1: UI/UX Design & Branding */}
-                <div className="expertise-area">
-                    <div className="expertise-area-content">
-                        <div className="content-wrapper">
-                            <h3 className="area-title">UI/UX Design & Branding</h3>
-                            <p className="area-description">
-                                I create digital experiences that not only look great but also communicate a brand's unique story. 
-                                Whether you need a full visual identity overhaul or a refined user interface, my design solutions 
-                                blend creativity with usability.
-                            </p>
+                <section id="expertise-areas" className="expertise-areas">
+                    {/* Area 1: UI/UX Design & Branding */}
+                    <div className="expertise-area">
+                        <div className="expertise-area-content">
+                            <h3 className="area-title hover-effect">Design & Branding</h3>
                             <div className="key-services">
                                 <ul>
-                                    <li>Visual Identity & Logo Design</li>
-                                    <li>User Interface (UI) Design</li>
-                                    <li>User Experience (UX) Strategy</li>
-                                    <li>Brand Guidelines & Style Guides</li>
-                                    <li>Typography, Color Schemes, & Iconography</li>
+                                    <li className="hover-effect">Visual Identity & Logo Design</li>
+                                    <li className="hover-effect">User Interface Design</li>
+                                    <li className="hover-effect">User Experience Strategy</li>
+                                    <li className="hover-effect">Brand Guidelines</li>
+                                    <li className="hover-effect">Typography & Color Systems</li>
                                 </ul>
                             </div>
                         </div>
+                        <div className="expertise-area-image">
+                            <img src="/assets/images/ui.jpg" alt="UI/UX Design & Branding" />
+                        </div>
                     </div>
-                    <div className="expertise-area-image">
-                        <img src="/assets/images/ui.jpg" alt="UI/UX Design & Branding" />
-                    </div>
-                </div>
 
-                {/* Area 2: Creative & Interactive */}
-                <div className="expertise-area">
-                    <div className="expertise-area-content">
-                        <div className="content-wrapper">
-                            <h3 className="area-title">Creative & Interactive</h3>
-                            <p className="area-description">
-                                My creative work goes beyond static visuals. I develop interactive designs and prototypes 
-                                that give users a taste of the final experience. From conceptual art direction to motion design, 
-                                my creative process ensures every project is as engaging as it is functional.
-                            </p>
+                    {/* Area 2: Creative & Interactive */}
+                    <div className="expertise-area">
+                        <div className="expertise-area-content">
+                            <h3 className="area-title hover-effect">Creative.</h3>
                             <div className="key-services">
                                 <ul>
-                                    <li>Art Direction & Concept Development</li>
-                                    <li>Interactive Prototyping</li>
-                                    <li>Motion & Micro-Interactions</li>
-                                    <li>Visual Storytelling</li>
-                                    <li>Creative Campaign Concepts</li>
+                                    <li className="hover-effect">Custom Web & App Development</li>
+                                    <li className="hover-effect">Interactive Prototyping</li>
+                                    <li className="hover-effect">User-Friendly Interfaces</li>
+                                    <li className="hover-effect">Solutions that Work for You</li>
+                                    <li className="hover-effect">Creative Problem Solving</li>
                                 </ul>
                             </div>
                         </div>
+                        <div className="expertise-area-image">
+                            <img src="/assets/images/creative.jpg" alt="Creative & Interactive" />
+                        </div>
                     </div>
-                    <div className="expertise-area-image">
-                        <img src="/assets/images/creative.jpg" alt="Creative & Interactive" />
-                    </div>
-                </div>
 
-                {/* Area 3: Web Development & E-Commerce */}
-                <div className="expertise-area">
-                    <div className="expertise-area-content">
-                        <div className="content-wrapper">
-                            <h3 className="area-title">Web Development & E-Commerce</h3>
-                           
-                            <p className="area-description">
-                                Bringing designs to life is where technology meets creativity. I build responsive, high-performance 
-                                web applications and e-commerce platforms that provide seamless user experiences across all devices. 
-                                My approach marries modern development practices with the aesthetics of thoughtful design.
-                            </p>
+                    {/* Area 3: Web Development & E-Commerce */}
+                    <div className="expertise-area">
+                        <div className="expertise-area-content">
+                            <h3 className="area-title hover-effect">Dev.</h3>
                             <div className="key-services">
                                 <ul>
-                                    <li>Front-End & Back-End Development</li>
-                                    <li>Responsive & Progressive Web Apps</li>
-                                    <li>E-Commerce Platform Integration</li>
-                                    <li>API & Third-Party Integration</li>
-                                    <li>Performance Optimization & Scalability</li>
+                                    <li className="hover-effect">Frontend Development</li>
+                                    <li className="hover-effect">Responsive Web Apps</li>
+                                    <li className="hover-effect">E-Commerce Solutions</li>
+                                    <li className="hover-effect">API Integration</li>
+                                    <li className="hover-effect">Performance Optimization</li>
                                 </ul>
                             </div>
                         </div>
+                        <div className="expertise-area-image">
+                            <img src="/assets/images/webdev.jpg" alt="Web Development & E-Commerce" />
+                        </div>
                     </div>
-                    <div className="expertise-area-image">
-                        <img src="/assets/images/webdev.jpg" alt="Web Development & E-Commerce" />
-                    </div>
-                </div>
 
-                {/* Area 4: Digital Strategy & Integration */}
-                <div className="expertise-area">
-                    <div className="expertise-area-content">
-                        <div className="content-wrapper">
-                            <h3 className="area-title">Digital Strategy & Integration</h3>
-                            <p className="area-description">
-                                Understanding the digital consumer is key to every project I undertake. I help translate insights 
-                                into strategic solutions that bridge the gap between design and development, ensuring your digital 
-                                presence is both compelling and effective.
-                            </p>
+                    {/* Area 4: Digital Strategy & Integration */}
+                    <div className="expertise-area">
+                        <div className="expertise-area-content">
+                            <h3 className="area-title hover-effect">Digital Strategy.</h3>
                             <div className="key-services">
                                 <ul>
-                                    <li>Digital Strategy & Planning</li>
-                                    <li>Data-Driven Design Decisions</li>
-                                    <li>Cross-Platform Integration</li>
-                                    <li>SEO & Accessibility Best Practices</li>
-                                    <li>Analytics & Continuous Improvement</li>
+                                    <li className="hover-effect">Digital Strategy</li>
+                                    <li className="hover-effect">Data-Driven Design</li>
+                                    <li className="hover-effect">Platform Integration</li>
+                                    <li className="hover-effect">SEO & Accessibility</li>
+                                    <li className="hover-effect">Analytics & Insights</li>
                                 </ul>
                             </div>
                         </div>
-                    </div>
-                    <div className="expertise-area-image">
-                        <img src="/assets/images/digital.jpg" alt="Digital Strategy & Integration" />
-                    </div>
-                </div>
-            </section>
-
-            <section id="projects" className="projects">
-                <div className="container">
-                    <h2>Featured Projects</h2>
-                    <div className="project-grid">
-                        {[1, 2, 3].map((project) => (
-                            <div key={project} className="project-card">
-                                <div className="project-image">
-                                    <Image 
-                                        src={`/project${project}.jpg`}
-                                        alt={`Project ${project}`}
-                                        width={400}
-                                        height={300}
-                                        layout="responsive"
-                                    />
-                                </div>
-                                <div className="project-info">
-                                    <h3>Project Title</h3>
-                                    <p>Project description goes here...</p>
-                                    <div className="tech-stack">
-                                        <span>React</span>
-                                        <span>Node.js</span>
-                                        <span>MongoDB</span>
-                                    </div>
-                                    <div className="project-links">
-                                        <a href="#" className="btn">View Details</a>
-                                        <a href="#" className="btn">Live Demo</a>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section id="skills" className="skills">
-                <div className="container">
-                    <h2>Skills & Expertise</h2>
-                    <div className="skills-grid">
-                        <div className="skill-category">
-                            <h3>Frontend Development</h3>
-                            <div className="skill-items">
-                                {['React', 'Next.js', 'TypeScript', 'CSS/SASS'].map((skill) => (
-                                    <div key={skill} className="skill-item">
-                                        <span>{skill}</span>
-                                        <div className="progress-bar">
-                                            <div className="progress" style={{width: '90%'}}></div>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
+                        <div className="expertise-area-image">
+                            <img src="/assets/images/digital.jpg" alt="Digital Strategy & Integration" />
                         </div>
-                        {/* Add more skill categories */}
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <section id="blog" className="blog">
-                <div className="container">
-                    <h2>Latest Articles</h2>
-                    <div className="blog-grid">
-                        {[1, 2, 3].map((post) => (
-                            <div key={post} className="blog-card">
-                                <Image 
-                                    src={`/blog${post}.jpg`}
-                                    alt={`Blog post ${post}`}
-                                    width={300}
-                                    height={200}
-                                />
-                                <div className="blog-content">
-                                    <h3>Blog Post Title</h3>
-                                    <p>Brief excerpt from the blog post...</p>
-                                    <a href="#" className="read-more">Read More →</a>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section id="contact" className="contact">
-                <div className="container">
-                    <h2>Get in Touch</h2>
+                <section className="contact-section">
                     <div className="contact-content">
-                        <div className="contact-info">
-                            <h3>Let's Connect</h3>
-                            <p>I'm always open to discussing new projects and opportunities.</p>
-                            <div className="social-links">
-                                <a href="#"><i className="fab fa-github"></i></a>
-                                <a href="#"><i className="fab fa-linkedin"></i></a>
-                                <a href="#"><i className="fab fa-twitter"></i></a>
+                        <div className="contact-main">
+                            <div className="contact-image">
+                                <img src="/assets/images/bird.png" alt="Feather" />
+                            </div>
+                            <div className="contact-text">
+                                <h2 className="site-name">JASPREET</h2>
+                                <p className="address">Winnipeg, Manitoba, CA</p>
+                                
+                                <div className="contact-info">
+                                    <a href="mailto:jasper.it@gmail.com" className="email hover-effect">
+                                        jasper.it@gmail.com
+                                    </a>
+                                    <a href="tel:4313384514" className="phone hover-effect">
+                                        431.338.4514
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-                            <div className="form-group">
-                                <input type="text" placeholder="Your Name" required />
-                            </div>
-                            <div className="form-group">
-                                <input type="email" placeholder="Your Email" required />
-                            </div>
-                            <div className="form-group">
-                                <textarea placeholder="Your Message" required></textarea>
-                            </div>
-                            <button type="submit" className="btn primary">Send Message</button>
-                        </form>
-                    </div>
-                </div>
-            </section>
 
-            <footer className="footer">
-                <div className="container">
-                    <div className="footer-content">
-                        <p>© 2024 Your Name. All rights reserved.</p>
-                        <div className="footer-links">
-                            <a href="#privacy">Privacy Policy</a>
-                            <a href="#terms">Terms of Use</a>
+                        <div className="social-links">
+                            <a href="https://instagram.com/your-handle" target="_blank" rel="noopener noreferrer" className="social-icon">
+                                <i className="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="social-icon">
+                                <i className="fab fa-linkedin-in"></i>
+                            </a>
                         </div>
                     </div>
-                </div>
-            </footer>
-        </>
+                </section>
+            </main>
+        </div>
     );
 } 
