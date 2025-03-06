@@ -4,6 +4,7 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import ThemeToggle from './ThemeToggle';
 import Link from 'next/link';
+import Navbar from './Navbar';
 
 // Dynamically import LavaRing with no SSR
 
@@ -89,53 +90,8 @@ export default function Portfolio() {
 
     return (
         <div className="portfolio-container">
-            <nav className="navbar">
-                <div className="nav-content">
-                    <div className="logo">Jasper.it</div>
-                    <div className="hamburger" onClick={(e) => {
-                        e.stopPropagation();
-                        setIsMenuOpen(!isMenuOpen);
-                    }}>
-                        {!isMenuOpen ? (
-                            <div className="hamburger-lines">
-                                <span></span>
-                                <span></span>
-                            </div>
-                        ) : (
-                            <div className="dropdown-menu">
-                                <div className="close-icon">
-                                    <span></span>
-                                    <span></span>
-                                </div>
-                                <a href="#about">About</a>
-                                <a href="#expertise">Expertise</a>
-                                <Link href="/projects">Projects</Link>
-                                <a href="#contact">Contact</a>
-                                <div className="social-links">
-                                    <div className="social-icon">
-                                        <a href="https://linkedin.com/your-profile" target="_blank" rel="noopener noreferrer">
-                                            <i className="fab fa-linkedin"></i>
-                                        </a>
-                                    </div>
-                                    <div className="social-icon">
-                                        <a href="https://instagram.com/your-profile" target="_blank" rel="noopener noreferrer">
-                                            <i className="fab fa-instagram"></i>
-                                        </a>
-                                    </div>
-                                    <div className="social-icon">
-                                        <a href="https://upwork.com/your-profile" target="_blank" rel="noopener noreferrer">
-                                            <i className="fas fa-briefcase"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </nav>
-
+            <Navbar />
             <ThemeToggle />
-
             <main>
                 <section id="hero" className="hero">
                     <div className="hero-content">

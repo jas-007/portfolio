@@ -1,0 +1,60 @@
+Rentela Inc
+Co-Founder | 12/2023 - Present
+Co-founded Rentela, revolutionizing property management by introducing a platform that guarantees rental payments to
+property owners from lease inception, ensuring consistent cash flow during tenant transitions or vacancies.
+Designed and implemented technology-driven solutions to streamline property management processes, including tenant
+onboarding, operational workflows, and payment systems.
+Developed and executed strategic growth plans, leveraging software solutions to expand client acquisition and diversify
+revenue streams.
+Spearheaded digital transformation initiatives, optimizing SEO, PPC, and social media strategies to enhance user
+engagement and platform visibility.
+Built scalable, secure, and user-friendly features to improve the platform’s functionality and deliver a seamless
+experience for property owners and tenants.
+Collaborated with cross-functional teams to integrate innovative tools and automate workflows, reducing manual efforts
+and improving operational efficiency.
+RBC
+Software Developer | 04/2023 - 11/2024
+Designed and developed a mortgage renewal tool using Angular, displaying real-time mortgage rates, which increased
+user engagement by 15% and boosted conversion rates by 20%.
+Optimized API performance by implementing GraphQL queries and mutations with Apollo Server and Node.js, reducing
+response times by 40%.
+Collaborated with designers to build responsive, scalable front-end components using HTML, CSS, and JavaScript,
+ensuring seamless user experiences.
+Developed a secure, dynamic company website using Django and Python, incorporating user-friendly layouts and
+responsive design for intuitive navigation.
+RBC
+Software Developer Co-op | 01/2023 - 04/2023
+Enhanced system efficiency by decoupling applications from SharePoint, implementing a new API system, and migrating
+project management tools to function independently.
+Built robust backend systems using ASP.NET, Entity Framework, C#, and Repository Pattern, reducing data
+inconsistency issues by 10% through bug analysis and resolution.
+Automated workflows using Cron schedule scripts to optimize performance and streamline processes.
+Agriculture and Agri-Food Canada
+Software Developer Co-op | 05/2022 - 12/2022
+Designed and developed robust single-page applications (SPAs) using Groovy on Grails, Java for backend services, and
+Oracle Databases, delivering high-performance solutions for complex client needs.
+Enhanced system efficiency by identifying and resolving bugs in heavy client applications using JavaScript frameworks,
+ensuring optimal functionality and user experience.
+Conducted thorough product analysis and regression testing prior to releases, ensuring bug-free production and highquality
+software delivery.
+Contributed to the design and implementation of scalable, maintainable, and secure software solutions, meeting both
+technical and client-specific requirements.
+HarmonizeHQ
+Software Engineer Co-op | 05/2021 - 12/2021
+Specialized in developing a chat-based HR system that integrates collaboration and automation to streamline workplace
+tasks, enhancing productivity and employee engagement.
+Designed and implemented an attendance automation system, enabling employees to clock in and out via simple text
+messages, significantly improving efficiency in the attendance tracking process.
+Enhanced the HR system by adding innovative features to make workplace interactions more engaging, fun, and
+productive.
+
+University of Manitoba
+Undergraduate Student Research | 05/2020 - 12/2020
+Assisted Prof. Robert Guderian with the research on consensus algorithms. Blockchain Mining, Cryptocurrency and
+validating block chain blocks were some of the topics researched in detail.
+Skills
+RSpec, HSQLDB, Node.js, Git version control, C#, Vue.js, Java, Bootstrap, Android Studio, HTML, React.js, Python, REST
+API’s, JavaScript, Groovy in Grails, Oracle, Ruby, Docker, AWS, Kubernetes, Ruby on Rails, NoSQL
+Education
+University of Manitoba
+Computer Science | 02/2023
