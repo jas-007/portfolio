@@ -83,6 +83,35 @@ export default function Portfolio() {
         return () => observer.disconnect();
     }, []);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const expertiseAreas = document.querySelectorAll('.expertise-area');
+            
+            expertiseAreas.forEach(area => {
+                const image = area.querySelector('.expertise-area-image');
+                const rect = area.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Calculate how much of the section is visible
+                const visiblePercentage = Math.max(0, Math.min(1, 
+                    (windowHeight - rect.top) / (rect.height + windowHeight)
+                ));
+                
+                // Reveal the image when the section is 20% visible
+                if (visiblePercentage > 0.2) {
+                    image.classList.add('revealed');
+                } else {
+                    image.classList.remove('revealed');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll(); // Initial check
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted');
