@@ -30,7 +30,9 @@ const Navbar = () => {
     return (
         <nav className="navbar">
             <div className="nav-content">
-                <Link href="/" className="logo">Jasper.it</Link>
+                <Link href="/" className="logo">
+                    <span className="logo-text">Jasper.it</span>
+                </Link>
                 <div className="hamburger" onClick={toggleMenu}>
                     {!isMenuOpen ? (
                         <div className="hamburger-lines">

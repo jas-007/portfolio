@@ -69,15 +69,40 @@ body {
 }
 
 .logo {
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+    display: inline-block;
+}
+
+.logo-text {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--text-color);
-    text-decoration: none;
+    text-decoration: none !important;
     transition: color 0.3s ease;
+    border: none;
+    outline: none;
 }
 
-.logo:hover {
+.logo:hover .logo-text {
     color: var(--hover-color);
+    text-decoration: none !important;
+    border: none;
+    outline: none;
+}
+
+/* Remove any default link styles */
+a {
+    text-decoration: none;
+}
+
+/* Override Next.js Link styles */
+a.logo {
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+    background: none !important;
 }
 
 .hamburger {
@@ -307,6 +332,7 @@ body.dropdown-open {
     font-size: 1.2rem;
     cursor: pointer;
     z-index: 2;
+    transition: all 0.3s ease;
 }
 
 .explore-link i {
@@ -328,6 +354,7 @@ body.dropdown-open {
 
 .explore-link:hover {
     color: var(--hover-color);
+    transform: translateX(-50%) translateY(-5px);
 }
 
 /* Buttons */
@@ -666,13 +693,15 @@ body.dropdown-open {
 }
 
 html {
-    scroll-behavior: auto; /* Reset to default */
+    scroll-behavior: auto;
+    scroll-padding-top: 80px;
 }
 
 /* Optional: Add scroll-timeline for smoother animation */
 @media (prefers-reduced-motion: no-preference) {
     html {
-        scroll-timeline: 2.5s cubic-bezier(0.4, 0, 0.2, 1);
+        scroll-timeline: 12s cubic-bezier(0.4, 0, 0.2, 1);
+        scroll-padding-top: 80px; /* Add padding to account for fixed navbar */
     }
 }
 
@@ -1219,14 +1248,21 @@ html {
 }
 
 .experience-item {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    padding: 2.5rem;
     margin-bottom: 3rem;
     transform-style: preserve-3d;
     transition: all 0.5s ease;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+.experience-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .experience-header {
@@ -1237,66 +1273,60 @@ html {
     font-size: 2rem;
     color: var(--text-color);
     margin-bottom: 0.5rem;
+    font-weight: 600;
 }
 
 .experience-header h3 {
     font-size: 1.2rem;
     color: var(--secondary-color);
     margin-bottom: 0.5rem;
+    font-weight: 500;
 }
 
-.period {
+.experience-date {
     font-size: 0.9rem;
     color: var(--accent-color);
-}
-
-.experience-content p {
-    color: var(--text-color);
     margin-bottom: 1rem;
-    line-height: 1.6;
 }
 
-.section-divider {
-    text-align: center;
-    margin: 4rem 0;
-    position: relative;
-}
-
-.section-divider::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--accent-color);
-    z-index: 1;
-}
-
-.section-divider span {
-    background: var(--background);
-    padding: 0 1rem;
+.experience-description {
     color: var(--text-color);
-    font-size: 1.5rem;
-    position: relative;
-    z-index: 2;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
 }
 
-.education {
-    background: rgba(255, 255, 255, 0.03);
+.experience-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.skill-tag {
+    padding: 0.4rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
-    .work-section {
-        padding: 100px 1rem 2rem;
-    }
-
     .experience-item {
         padding: 1.5rem;
     }
-
+    
     .experience-header h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+    }
+    
+    .experience-header h3 {
+        font-size: 1.1rem;
     }
 }
 
@@ -1309,4 +1339,26 @@ html {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Add smooth transition for scroll */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    transition: scroll-behavior 1s ease-in-out;
+}
+
+/* Add delay to scroll animation */
+@keyframes smoothScroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100vh);
+    }
+}
+
+/* Add transition delay to scroll */
+html {
+    transition-delay: 0.5s;
 }

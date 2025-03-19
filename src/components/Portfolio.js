@@ -106,7 +106,35 @@ export default function Portfolio() {
                                 <source src="/assets/videos/earth.mp4" type="video/mp4" />
                             </video>
                         </div>
-                        <a href="#about" className="explore-link">
+                        <a 
+                            href="#about" 
+                            className="explore-link"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const expertiseSection = document.getElementById('expertise');
+                                const startPosition = window.pageYOffset;
+                                // Show 30% of the expertise section
+                                const targetPosition = expertiseSection.offsetTop - window.innerHeight * 0.7;
+                                const distance = targetPosition - startPosition;
+                                const duration = 4000; // 4 seconds
+                                let start = null;
+
+                                function animation(currentTime) {
+                                    if (start === null) start = currentTime;
+                                    const timeElapsed = currentTime - start;
+                                    const run = ease(timeElapsed, startPosition, distance, duration);
+                                    window.scrollTo(0, run);
+                                    if (timeElapsed < duration) requestAnimationFrame(animation);
+                                }
+
+                                function ease(t, b, c, d) {
+                                    t /= d;
+                                    return -c * t * (t - 2) + b;
+                                }
+
+                                requestAnimationFrame(animation);
+                            }}
+                        >
                             Explore
                             <i className="fas fa-chevron-down"></i>
                         </a>
