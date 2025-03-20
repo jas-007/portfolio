@@ -5,32 +5,32 @@ import Image from 'next/image';
 import Navbar from '../../../components/Navbar';
 
 const projectData = {
-    title: "HabitHero",
+    title: "ProConnect",
     year: "2023",
-    duration: "4 months",
-    role: "Android Developer",
-    overview: "HabitHero is a gamified habit tracking Android application that transforms personal development into an engaging adventure. As a developer, I designed and implemented the core functionality that allows users to track their habits while experiencing game-like progression through experience points, achievements, and level-ups.",
-    liveUrl: "https://play.google.com/store/apps/details?id=com.habithero",
-    nextProject: "/projects/proconnect",
-    githubUrl: "https://github.com/yourusername/habithero",
+    duration: "3 months",
+    role: "Full Stack Developer",
+    overview: "ProConnect is a comprehensive platform connecting users with trusted healthcare professionals. The platform streamlines the process of finding, booking, and managing healthcare services through an intuitive interface and robust backend system.",
+    liveUrl: "https://proconnect-puce.vercel.app",
+    nextProject: "/projects/rentela",
+    githubUrl: "https://github.com/yourusername/proconnect",
     
     research: {
         title: "Research & Discovery",
         questions: [
             {
-                question: "How can we make habit tracking more engaging for users?",
-                findings: "Traditional habit tracking apps often lead to user abandonment due to lack of motivation.",
-                solution: "Implemented a gamification system that rewards consistency and provides visual feedback for progress."
+                question: "How can we simplify the process of finding and booking healthcare professionals?",
+                findings: "Users found existing platforms complicated and time-consuming to navigate through multiple service providers.",
+                solution: "Implemented an intuitive search and filter system with real-time availability and instant booking capabilities."
             },
             {
-                question: "What's the optimal way to handle offline functionality?",
-                findings: "Users expect the app to work seamlessly regardless of network connectivity.",
-                solution: "Developed an offline-first architecture using Room database with background sync capabilities."
+                question: "What factors build trust between users and healthcare professionals?",
+                findings: "Verified credentials, reviews, and transparent pricing were key factors in user decision-making.",
+                solution: "Developed a comprehensive verification system and detailed professional profiles with ratings and reviews."
             },
             {
-                question: "How can we encourage long-term user engagement?",
-                findings: "Users need both short-term and long-term motivation to maintain habits.",
-                solution: "Created a multi-tiered reward system with daily streaks, achievements, and level progression."
+                question: "How can we streamline the scheduling and management process?",
+                findings: "Both users and professionals needed a simple way to manage appointments and communications.",
+                solution: "Created a unified dashboard for appointment management, reminders, and secure messaging."
             }
         ]
     },
@@ -39,60 +39,61 @@ const projectData = {
         title: "User Testing Insights",
         findings: [
             {
-                issue: "Initial loading time was too long",
-                impact: "Users were getting impatient during app startup",
-                solution: "Implemented lazy loading and optimized database queries"
+                issue: "Service search results weren't relevant enough",
+                impact: "Users spent too much time finding the right professional",
+                solution: "Enhanced search algorithm with filters for specialization, location, and availability"
             },
             {
-                issue: "Notification system was too aggressive",
-                impact: "Users were turning off notifications completely",
-                solution: "Created smart notification system with user-defined quiet hours and frequency"
+                issue: "Booking process had too many steps",
+                impact: "High drop-off rate during booking flow",
+                solution: "Streamlined booking to a 3-step process with progress indicators"
             },
             {
-                issue: "Achievement unlocks weren't noticeable enough",
-                impact: "Users were missing their accomplishments",
-                solution: "Added animated celebrations and persistent achievement badges"
+                issue: "Professional profiles lacked important information",
+                impact: "Users weren't confident in making booking decisions",
+                solution: "Added detailed credentials, specializations, and verified reviews sections"
             }
         ]
     },
 
     challenges: [
         {
-            title: "Local Data Persistence",
-            description: "Users needed reliable offline functionality while maintaining data integrity.",
-            solution: "Implemented a robust SQLite database using Room persistence library with background sync capabilities."
+            title: "Real-time Availability",
+            description: "Managing real-time scheduling across different time zones and provider calendars.",
+            solution: "Implemented a sophisticated calendar system with real-time sync and conflict resolution."
         },
         {
-            title: "Performance Optimization",
-            description: "App performance was crucial for user retention and engagement.",
-            solution: "Enhanced app performance by implementing efficient data structures and optimizing database queries."
+            title: "Trust & Safety",
+            description: "Ensuring the platform maintains high standards for healthcare professional verification.",
+            solution: "Developed a robust verification system including credential checks, background verification, and user reviews."
         },
         {
-            title: "User Engagement",
-            description: "Traditional habit tracking apps often fail to maintain user interest.",
-            solution: "Developed a comprehensive reward system using custom Android animations and Material Design components."
+            title: "Payment Processing",
+            description: "Handling secure payments and managing different service pricing models.",
+            solution: "Integrated a secure payment gateway with support for multiple payment methods and automated invoicing."
         }
     ],
 
     images: [
-        "/assets/images/habithero/hero.png",
-        "/assets/images/habithero/wireframes.png",
-        "/assets/images/habithero/high-fidelity.png",
-        "/assets/images/habithero/final-design.png",
-        "/assets/images/habithero/mobile-views.png"
+        "/assets/images/proconnect/hero.png",
+        "/assets/images/proconnect/wireframes.png",
+        "/assets/images/proconnect/high-fidelity.png",
+        "/assets/images/proconnect/final-design.png",
+        "/assets/images/proconnect/mobile-views.png"
     ],
 
     toolsAndTech: {
-        development: ["Android SDK", "Java", "Kotlin", "SQLite", "Room Database"],
-        architecture: ["MVVM", "Clean Architecture", "Repository Pattern", "WorkManager"],
-        testing: ["JUnit", "Espresso", "Firebase Test Lab", "Android Studio Profilers"]
+        frontend: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Material UI"],
+        backend: ["Node.js", "Express", "MongoDB", "Redis", "AWS"],
+        devops: ["Docker", "GitHub Actions", "AWS EC2", "Vercel", "MongoDB Atlas"]
     },
     deliverables: [
-        "Native Android Application",
-        "Offline-first Architecture",
-        "Custom Animation Library",
+        "Responsive Web Application",
+        "Professional Dashboard",
+        "Booking Management System",
+        "Real-time Chat Feature",
         "Analytics Dashboard",
-        "CI/CD Pipeline"
+        "Mobile-Optimized Interface"
     ]
 };
 
@@ -105,7 +106,7 @@ export default function ProjectPage() {
                 <div className="project-hero">
                     <Image
                         src={projectData.images[0]}
-                        alt="HabitHero App"
+                        alt="ProConnect Platform"
                         width={1920}
                         height={1080}
                         priority
@@ -139,25 +140,25 @@ export default function ProjectPage() {
                         <h2>Tools & Technologies</h2>
                         <div className="tools-grid">
                             <div className="tool-category">
-                                <h3>Development</h3>
+                                <h3>Frontend</h3>
                                 <ul>
-                                    {projectData.toolsAndTech.development.map((tool, index) => (
+                                    {projectData.toolsAndTech.frontend.map((tool, index) => (
                                         <li key={index}>{tool}</li>
                                     ))}
                                 </ul>
                             </div>
                             <div className="tool-category">
-                                <h3>Architecture</h3>
+                                <h3>Backend</h3>
                                 <ul>
-                                    {projectData.toolsAndTech.architecture.map((tool, index) => (
+                                    {projectData.toolsAndTech.backend.map((tool, index) => (
                                         <li key={index}>{tool}</li>
                                     ))}
                                 </ul>
                             </div>
                             <div className="tool-category">
-                                <h3>Testing & Quality</h3>
+                                <h3>DevOps</h3>
                                 <ul>
-                                    {projectData.toolsAndTech.testing.map((tool, index) => (
+                                    {projectData.toolsAndTech.devops.map((tool, index) => (
                                         <li key={index}>{tool}</li>
                                     ))}
                                 </ul>
@@ -184,7 +185,7 @@ export default function ProjectPage() {
                         <div className="wireframe-image">
                             <Image
                                 src={projectData.images[1]}
-                                alt="HabitHero Wireframes"
+                                alt="ProConnect Wireframes"
                                 width={1200}
                                 height={800}
                                 className="wireframe"
@@ -197,7 +198,7 @@ export default function ProjectPage() {
                         <div className="wireframe-image">
                             <Image
                                 src={projectData.images[2]}
-                                alt="HabitHero High Fidelity Design"
+                                alt="ProConnect High Fidelity Design"
                                 width={1200}
                                 height={800}
                                 className="wireframe"

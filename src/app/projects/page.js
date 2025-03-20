@@ -15,8 +15,9 @@ export default function ProjectsPage() {
             <main className="projects-section">
                 <div className="projects-grid">
                     {projects.map((project) => (
-                        <div 
+                        <Link 
                             key={project.id}
+                            href={project.detailsUrl}
                             className="project-tile"
                             onMouseEnter={() => setHoveredProject(project.id)}
                             onMouseLeave={() => setHoveredProject(null)}
@@ -25,31 +26,16 @@ export default function ProjectsPage() {
                                 <Image
                                     src={project.image}
                                     alt={project.title}
-                                    width={400}
-                                    height={300}
+                                    width={800}
+                                    height={450}
                                     layout="responsive"
                                 />
                             </div>
                             <div className={`project-overlay ${hoveredProject === project.id ? 'active' : ''}`}>
                                 <h3>{project.title}</h3>
-                                <div className="project-actions">
-                                    <Link href={project.detailsUrl} className="action-button">
-                                        More Info
-                                    </Link>
-                                    <Link href={project.caseStudyUrl} className="action-button">
-                                        Case Study
-                                    </Link>
-                                    <a 
-                                        href={project.liveUrl} 
-                                        target="_blank" 
-                                        rel="noopener noreferrer" 
-                                        className="action-button"
-                                    >
-                                        Visit Site
-                                    </a>
-                                </div>
+                                <p className="project-description">{project.description}</p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </main>
