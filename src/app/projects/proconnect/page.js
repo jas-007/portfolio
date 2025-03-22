@@ -75,7 +75,7 @@ const projectData = {
     ],
 
     images: [
-        "/assets/images/proconnect/hero.png",
+        "/assets/images/proconnect/hero1.png",
         "/assets/images/proconnect/wireframes.png",
         "/assets/images/proconnect/high-fidelity.png",
         "/assets/images/proconnect/final-design.png",

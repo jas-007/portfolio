@@ -1172,13 +1172,13 @@ html {
 
 /* Project Detail Page */
 .project-detail-section {
-    padding: 120px 8rem 4rem;
+    padding: 120px 0rem 4rem;
     background-color: var(--background);
 }
 
 .project-hero {
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     position: relative;
     overflow: hidden;
 }
@@ -1186,7 +1186,7 @@ html {
 .hero-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .project-content {
