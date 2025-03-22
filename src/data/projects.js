@@ -11,7 +11,7 @@ export const projects = [
     {
         id: 'habithero',
         title: "HabitHero",
-        image: "/assets/images/habithero-home.png",
+        image: "/assets/images/habithero/logo.png",
         description: "A gamified habit tracking application that helps users build and maintain positive habits through an engaging, game-like experience",
         caseStudyUrl: "/case-studies/habithero",
         liveUrl: "https://landoncolburn.github.io/a01-g10-website/",

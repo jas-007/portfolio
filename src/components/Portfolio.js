@@ -1,7 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import ThemeToggle from './ThemeToggle';
 import Link from 'next/link';
 import Navbar from './Navbar';
@@ -9,50 +8,30 @@ import Navbar from './Navbar';
 // Dynamically import LavaRing with no SSR
 
 export default function Portfolio() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
     useEffect(() => {
         // Smooth scroll handler
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+        const handleSmoothScroll = (e) => {
+            e.preventDefault();
+            const href = e.currentTarget.getAttribute('href');
+            if (href.startsWith('#')) {
+                const element = document.querySelector(href);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
                 }
-            });
-        });
-
-        // Reveal animations on scroll
-        const revealElements = document.querySelectorAll('.project-card, .skill-category');
-        const reveal = () => {
-            revealElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('revealed');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', reveal);
-        return () => window.removeEventListener('scroll', reveal);
-    }, []);
-
-    // Close menu when clicking outside
-    useEffect(() => {
-        const closeMenu = (e) => {
-            if (!e.target.closest('.hamburger') && !e.target.closest('.dropdown-menu')) {
-                setIsMenuOpen(false);
             }
         };
 
-        document.addEventListener('click', closeMenu);
+        // Add event listeners to all internal links
+        const internalLinks = document.querySelectorAll('a[href^="#"]');
+        internalLinks.forEach(link => {
+            link.addEventListener('click', handleSmoothScroll);
+        });
+
+        // Cleanup
         return () => {
-            document.removeEventListener('click', closeMenu);
+            internalLinks.forEach(link => {
+                link.removeEventListener('click', handleSmoothScroll);
+            });
         };
     }, []);
 
@@ -111,11 +90,6 @@ export default function Portfolio() {
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form submitted');
-    };
 
     return (
         <div className="portfolio-container">
@@ -206,11 +180,15 @@ export default function Portfolio() {
                             From responsive websites to intuitive interfaces, I combine technical precision with creative flair to bring ideas to life.
                         </p>
                         <div className="portfolio-link-container">
-                            <a href="#portfolio" className="portfolio-link">
+                            <Link href="/projects" className="portfolio-link">
                                 <span>Portfolio</span>
                                 <i className="fas fa-globe"></i>
-                            </a>
-                            <a href="#contact" className="portfolio-link">
+                            </Link>
+                            <a href="#contact" className="portfolio-link" onClick={(e) => {
+                                e.preventDefault();
+                                const footer = document.querySelector('.contact-section');
+                                footer.scrollIntoView({ behavior: 'smooth' });
+                            }}>
                                 <span>Contact</span>
                                 <i className="fas fa-user"></i>
                             </a>
@@ -223,6 +201,9 @@ export default function Portfolio() {
                     <div className="expertise-area">
                         <div className="expertise-area-content">
                             <h3 className="area-title hover-effect">Design & Branding</h3>
+                            <p className="area-description">
+                                I develop full branding and design projects for different industry categories. Over 100+ projects done in the past year, delivering comprehensive brand identities and design solutions that make lasting impressions.
+                            </p>
                             <div className="key-services">
                                 <ul>
                                     <li className="hover-effect">Visual Identity & Logo Design</li>
@@ -234,7 +215,13 @@ export default function Portfolio() {
                             </div>
                         </div>
                         <div className="expertise-area-image">
-                            <img src="/assets/images/ui.jpg" alt="UI/UX Design & Branding" />
+                            <Image
+                                src="/assets/images/ui.jpg"
+                                alt="UI/UX Design & Branding"
+                                width={800}
+                                height={600}
+                                className="expertise-image"
+                            />
                         </div>
                     </div>
 
@@ -242,6 +229,9 @@ export default function Portfolio() {
                     <div className="expertise-area">
                         <div className="expertise-area-content">
                             <h3 className="area-title hover-effect">Creative.</h3>
+                            <p className="area-description">
+                                Transforming ideas into engaging digital experiences through innovative design and development. Specializing in creating interactive solutions that captivate and convert.
+                            </p>
                             <div className="key-services">
                                 <ul>
                                     <li className="hover-effect">Custom Web & App Development</li>
@@ -253,7 +243,13 @@ export default function Portfolio() {
                             </div>
                         </div>
                         <div className="expertise-area-image">
-                            <img src="/assets/images/creative.jpg" alt="Creative & Interactive" />
+                            <Image
+                                src="/assets/images/creative.jpg"
+                                alt="Creative & Interactive"
+                                width={800}
+                                height={600}
+                                className="expertise-image"
+                            />
                         </div>
                     </div>
 
@@ -261,6 +257,9 @@ export default function Portfolio() {
                     <div className="expertise-area">
                         <div className="expertise-area-content">
                             <h3 className="area-title hover-effect">Dev.</h3>
+                            <p className="area-description">
+                                Building robust, scalable web applications with modern technologies. Focused on creating efficient, maintainable code that drives business growth and user engagement.
+                            </p>
                             <div className="key-services">
                                 <ul>
                                     <li className="hover-effect">Frontend Development</li>
@@ -272,7 +271,13 @@ export default function Portfolio() {
                             </div>
                         </div>
                         <div className="expertise-area-image">
-                            <img src="/assets/images/webdev.jpg" alt="Web Development & E-Commerce" />
+                            <Image
+                                src="/assets/images/webdev.jpg"
+                                alt="Web Development & E-Commerce"
+                                width={800}
+                                height={600}
+                                className="expertise-image"
+                            />
                         </div>
                     </div>
 
@@ -280,6 +285,9 @@ export default function Portfolio() {
                     <div className="expertise-area">
                         <div className="expertise-area-content">
                             <h3 className="area-title hover-effect">Digital Strategy.</h3>
+                            <p className="area-description">
+                                Crafting data-driven digital strategies that align with business objectives. Implementing comprehensive solutions that enhance online presence and drive measurable results.
+                            </p>
                             <div className="key-services">
                                 <ul>
                                     <li className="hover-effect">Digital Strategy</li>
@@ -291,7 +299,13 @@ export default function Portfolio() {
                             </div>
                         </div>
                         <div className="expertise-area-image">
-                            <img src="/assets/images/digital.jpg" alt="Digital Strategy & Integration" />
+                            <Image
+                                src="/assets/images/digital.jpg"
+                                alt="Digital Strategy & Integration"
+                                width={800}
+                                height={600}
+                                className="expertise-image"
+                            />
                         </div>
                     </div>
                 </section>
@@ -300,15 +314,21 @@ export default function Portfolio() {
                     <div className="contact-content">
                         <div className="contact-main">
                             <div className="contact-image">
-                                <img src="/assets/images/bird.png" alt="Feather" />
+                                <Image
+                                    src="/assets/images/bird.png"
+                                    alt="Feather"
+                                    width={400}
+                                    height={400}
+                                    className="contact-image"
+                                />
                             </div>
                             <div className="contact-text">
                                 <h2 className="site-name">JASPREET</h2>
                                 <p className="address">Winnipeg, Manitoba, CA</p>
                                 
                                 <div className="contact-info">
-                                    <a href="mailto:jasper.it@gmail.com" className="email hover-effect">
-                                        jasper.it@gmail.com
+                                    <a href="mailto:jasper.it.65@gmail.com" className="email hover-effect">
+                                        jasper.it.65@gmail.com
                                     </a>
                                     <a href="tel:4313384514" className="phone hover-effect">
                                         431.338.4514
@@ -318,11 +338,14 @@ export default function Portfolio() {
                         </div>
 
                         <div className="social-links">
-                            <a href="https://instagram.com/your-handle" target="_blank" rel="noopener noreferrer" className="social-icon">
+                            <a href="https://www.instagram.com/jasper.it.65" target="_blank" rel="noopener noreferrer" className="social-icon">
                                 <i className="fab fa-instagram"></i>
                             </a>
-                            <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="social-icon">
+                            <a href="https://www.linkedin.com/in/jaspreetcing/" target="_blank" rel="noopener noreferrer" className="social-icon">
                                 <i className="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/jas-007" target="_blank" rel="noopener noreferrer" className="social-icon">
+                                <i className="fab fa-github"></i>
                             </a>
                         </div>
                     </div>

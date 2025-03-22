@@ -777,6 +777,7 @@ html {
     background-color: var(--background);
     position: relative;
     margin-top: -8vh;
+
 }
 
 .video-container {
@@ -815,6 +816,7 @@ html {
     justify-content: center;
     gap: 1.5rem;
     flex-wrap: wrap;
+    
 }
 
 .expertise-title .dot {
@@ -829,6 +831,7 @@ html {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 .portfolio-link-container {
@@ -873,6 +876,7 @@ html {
     align-items: center;
     justify-content: center;
     background-color: var(--background);
+    
 }
 
 .expertise-content {
@@ -882,6 +886,7 @@ html {
     padding: 0 2rem;
     opacity: 0;
     animation: fadeIn 1s ease forwards;
+    
 }
 
 /* Keep existing expertise-title, expertise-description, and portfolio-link styles */
@@ -898,7 +903,7 @@ html {
     justify-content: space-between;
     position: relative;
     padding: 2rem 4rem;
-    gap: 4rem;
+    gap: 2rem;
     overflow: hidden;
     isolation: isolate;
 }
@@ -906,9 +911,9 @@ html {
 .expertise-area-content {
     flex: 0.5;
     text-align: left;
-    padding-right: 2rem;
     position: relative;
     z-index: 2;
+    padding-left: 6rem;
 }
 
 .expertise-area-image {
@@ -939,10 +944,18 @@ html {
 .area-title {
     font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     text-align: left;
     color: var(--text-color);
     width: 100%;
+}
+
+.area-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #a0a0a0;
+    margin-bottom: 2.5rem;
+    max-width: 600px;
 }
 
 .key-services {
@@ -951,13 +964,13 @@ html {
     align-items: flex-start;
     width: 100%;
     position: relative;
-    padding-left: 2rem;
+    padding-left: 4rem;
 }
 
 .key-services::before {
     content: '';
     position: absolute;
-    left: 0;
+    left: 2rem;
     top: 0;
     bottom: 0;
     width: 2px;
@@ -1644,4 +1657,18 @@ html {
 .social-links a:hover {
     color: var(--accent-color);
     transform: translateY(-2px);
+}
+
+.expertise-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px 0 0 16px;
+}
+
+.contact-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }

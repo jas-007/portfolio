@@ -52,18 +52,18 @@ const Navbar = () => {
                             <Link href="/#contact" onClick={() => setIsMenuOpen(false)}>Contact</Link>
                             <div className="social-links">
                                 <div className="social-icon">
-                                    <a href="https://linkedin.com/your-profile" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.linkedin.com/in/jaspreetcing/" target="_blank" rel="noopener noreferrer">
                                         <i className="fab fa-linkedin"></i>
                                     </a>
                                 </div>
                                 <div className="social-icon">
-                                    <a href="https://instagram.com/your-profile" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.instagram.com/jasper.it.65" target="_blank" rel="noopener noreferrer">
                                         <i className="fab fa-instagram"></i>
                                     </a>
                                 </div>
                                 <div className="social-icon">
-                                    <a href="https://upwork.com/your-profile" target="_blank" rel="noopener noreferrer">
-                                        <i className="fas fa-briefcase"></i>
+                                    <a href="https://github.com/jas-007" target="_blank" rel="noopener noreferrer">
+                                        <i className="fab fa-github"></i>
                                     </a>
                                 </div>
                             </div>

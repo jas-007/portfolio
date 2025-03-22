@@ -238,15 +238,18 @@ export default function ProjectPage() {
                             <p>Winnipeg, Manitoba, CA</p>
                         </div>
                         <div className="footer-contact">
-                            <a href="mailto:jasper.it@gmail.com">jasper.it@gmail.com</a>
+                            <a href="mailto:jasper.it.65@gmail.com">jasper.it.65@gmail.com</a>
                             <a href="tel:4313384514">431.338.4514</a>
                         </div>
                         <div className="social-links">
-                            <a href="https://instagram.com/your-handle" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.instagram.com/jasper.it.65" target="_blank" rel="noopener noreferrer">
                                 <i className="fab fa-instagram"></i>
                             </a>
-                            <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.linkedin.com/in/jaspreetcing/" target="_blank" rel="noopener noreferrer">
                                 <i className="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://github.com/jas-007" target="_blank" rel="noopener noreferrer">
+                                <i className="fab fa-github"></i>
                             </a>
                         </div>
                     </div>
